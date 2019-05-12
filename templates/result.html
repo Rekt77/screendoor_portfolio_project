@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+   <body>
+   
+      <table border = 1>
+         {% for key, value in result.items() %}
+            <tr>
+               <th> {{ key }} </th>
+               {% if value|int >= 90 %}
+                  <td> A </td>
+               {% elif value|int >= 70 %}
+                  <td> B </td>
+               {% elif value|int >= 50 %}
+                  <td> C </td>
+               {% else %}
+                  <td> D </td>
+               {% endif %}
+            </tr>
+            
+         {% endfor %}
+      </table>
+      
+   </body>
+</html>

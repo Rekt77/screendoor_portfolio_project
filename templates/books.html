@@ -1,0 +1,16 @@
+<html>
+<head>
+</head>
+<body>
+	<h1>Book List</h1>
+	{% for items in books%}
+	<div style='margin-top:30px;margin-bottom:30px'>
+	<p><b>Book Name</b> : {{items.get('bookName')}}</p>
+	<p><b>Book Price</b> : {{items.get('bookPrice')}}</p>
+	<p><b>Book Author</b> : {{items.get('bookAuthor')}}</p>
+	<p><b>Book Publisher</b> : {{items.get('bookPublisher')}}</p>
+	</div>
+	<hr/>
+	{% endfor %}
+</body>
+</html>
