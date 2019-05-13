@@ -1,14 +1,26 @@
-<html>
-<head>
-</head>
-<body>
-	<h1>Book Register</h1>
-	<form method="POST" action="./books">
-		<p>Book Name : <input name="bookName" type="text"/></p>
-		<p>Book Price : <input name="bookPrice" type="text"/></p>
-		<p>Book Author : <input name="bookAuthor" type="text"/></p>
-		<p>Book Publisher : <input name="bookPublisher" type="text"/></p>
-		<input type="submit" value="register"/>
-	</form>
-</body>
-</html>
+{% extends "base.html"%}
+{% block content %}
+	<div class="jumbotron">
+	  <h1 class="display-4">Book Register</h1>
+	  <hr class="my-4">
+	  <form action="/books" method="POST">
+		  <div class="form-group">
+		    <label for="bookName">Book Name</label>
+		    <input type="text" name="bookName" class="form-control" id="bookName" placeholder="Name of Book">
+		  </div>
+		  <div class="form-group">
+		    <label for="bookPrice">Book Price</label>
+		    <input type="number" name="bookPrice" class="form-control" id="bookPrice" placeholder="Price of Book">
+		  </div>
+		  <div class="form-group">
+		    <label for="bookAuthor">Author</label>
+		    <input type="text" name="bookAuthor" class="form-control" id="bookAuthor" placeholder="Author">
+		  </div>
+		  <div class="form-group">
+		    <label for="bookPublisher">Publisher</label>
+		    <input type="text" name="bookPublisher" class="form-control" id="bookPublisher" placeholder="Publisher">
+		  </div>
+		  <button type="submit" class="btn btn-primary">Register</button>
+		</form>
+	</div>
+{% endblock content %}
