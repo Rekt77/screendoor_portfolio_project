@@ -1,6 +1,5 @@
-<html>
-<head>
-<body>
+{% extends "base.html"%}
+{% block contents %}
 	<h1>Login</h1>
 	<form method="POST" action = "./login">
 		<p><input name="userEmail" type="text" placeholder="id"/></p>
@@ -15,6 +14,4 @@
 			{% endfor %}
 		{% endif %}
 	{% endwith %}
-</body>
-</head>
-</html>
+{% endblock contents %}
