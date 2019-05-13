@@ -1,17 +1,36 @@
 {% extends "base.html"%}
-{% block contents %}
-	<h1>Login</h1>
-	<form method="POST" action = "./login">
-		<p><input name="userEmail" type="text" placeholder="id"/></p>
-		<p><input name="userPassword" type="password" placeholder="password"/></p>
-		<input type="submit" value="send">
-	</form>
-	{% with messages = get_flashed_messages() %}
+{% block content %}
+	<div class="jumbotron">
+	  <h1 class="display-4">Login</h1>
+	  <hr class="my-4">
+	  <form action="/login" method="POST">
+		  <div class="form-group">
+		    <label for="exampleInputEmail1">Email address</label>
+		    <input type="email" name="userEmail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+		    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputPassword1">Password</label>
+		    <input type="password" name="userPassword" class="form-control" id="exampleInputPassword1" aria-describedby="passwordHelp" placeholder="Password">
+		    <small id="passwordHelp" class="form-text text-muted">We'll never share your password with anyone else.</small>
+		  </div>
+		  <button type="submit" class="btn btn-primary">Signin</button>
+		</form>
+		{% with messages = get_flashed_messages() %}
 		{% if messages %}
 			{% for message in messages %}
-				<hr/>
+				<hr class="my-4"/>
+				<p></p>
+				<div class="alert alert-danger" role="alert">
+				<h4 class="alert-heading">Get Back!</h4>
 				<p>{{message}}</p>
+				<hr>
+				<p class="mb-0">if you don't have an ID please do signup first to access our contetns.</p>
+				</div>
 			{% endfor %}
 		{% endif %}
-	{% endwith %}
-{% endblock contents %}
+		{% endwith %}
+	</div>
+{% endblock content %}
+	
+	

@@ -28,71 +28,6 @@ users = pymongo.collection.Collection(db,'Users')
 Books = pymongo.collection.Collection(db, 'Books')
 
 
-def jwt_token_required(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        if not 'Authorization' in request.headers:
-            return jsonify({
-                    "message":"token is not given"
-                    }),400
-        token = request.headers['Authorization']
-        try:
-            decoded_token = jwt.decode(token,secret_key,algorithms=['HS256'])
-        except:
-            return jsonify({
-                    "message":"invalid token given"
-                    }), 400
-        kwargs['decoded_token'] = decoded_token
-        return f(*args, **kwargs)
-    return decorated_function
-
-@app.route('/userSignup', methods = ['POST'])
-def userSignup():
-    try:
-        reqJson = request.get_json()#json 데이터를 받아옴
-        doc = {"userEmail":reqJson["userEmail"]}
-        if users.find_one(doc) is None:
-            users.insert_one({"userEmail":reqJson["userEmail"],"userPassword":reqJson["userPassword"]})
-            return jsonify({"status":200,"message":"Signup success"})
-        else:
-            return jsonify({"status":401,"message":"Email already Exists."})
-    
-    except:
-        return jsonify({"status":403,"message":"Unknown JSON"})
-
-
-@app.route('/userDelete', methods = ['POST'])
-@jwt_token_required
-def userDelete():
-    try:
-        reqJson = request.get_json()#json 데이터를 받아옴
-        doc = {"userEmail":reqJson["userEmail"],"userPassword":reqJson["userPassword"]}
-        if not users.find_one(doc) is None:
-            users.delete_one(doc)
-            return jsonify({"status":200,"message":"Delete success"})
-        else:
-            return jsonify({"status":401,"message":"No Authentication"})
-    except:
-        return jsonify({"status":403,"message":"Unknown JSON"})
-
-@app.route('/userSignin', methods = ['POST'])
-def userSignin():
-    reqJson = request.get_json()#json 데이터를 받아옴
-    doc = {"userEmail":reqJson["userEmail"],"userPassword":reqJson["userPassword"]}
-    try:
-        if not users.find_one(doc) is None:
-            try:
-                res = requests.get("http://localhost:5001/get_token")
-                res_json = res.get_json()
-                return jsonify({"status":200,"message":"login Success","token":res_json["token"]})
-            except:
-                return jsonify({"status":500,"message":"internal server error"})
-
-        else:
-            return jsonify({"status":401,"message":"login Failure"})
-    except:
-        return jsonify({"status":403,"message":"login Failed"})
-
 @app.route('/signup',methods=['GET','POST'])
 def signup():
     if request.method == 'GET':
@@ -108,6 +43,7 @@ def signup():
         session['userEmail'] = request.form['userEmail']
         return render_template('welcome.html', info=session['userEmail'])
 
+@app.route('/')
 @app.route('/login',methods=['GET','POST'])
 def login():
     if request.method == 'GET':
@@ -122,7 +58,7 @@ def login():
         if users.find_one(request.form.to_dict(flat='true')) is not None:
             session['userEmail'] = request.form['userEmail']
             return render_template('welcome.html', info=session['userEmail'])
-        flash('You have to logged in')
+        flash('Wrong ID or PW, You have to check your ID or PW.')
         return redirect(url_for('login'))
 
 @app.route('/logout')
@@ -139,7 +75,6 @@ def register():
             return render_template('register.html')
     flash('You have to logged in')
     return redirect(url_for('login'))
-    
     
 @app.route('/books',methods=['GET', 'POST'])
 def books():
