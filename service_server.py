@@ -31,7 +31,8 @@ Books = pymongo.collection.Collection(db, 'Books')
 @app.before_request
 def make_session_permanent():
     session.permanent = True
-    app.permanent_session_lifetime = timedelta(minutes=1)
+    app.permanent_session_lifetime = timedelta(minutes=20)
+    print("before!")
 
 @app.route('/signup',methods=['GET','POST'])
 def signup():
