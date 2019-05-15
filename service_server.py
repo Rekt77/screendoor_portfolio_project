@@ -6,15 +6,16 @@ Created on Mon Apr  8 20:18:20 2019
 """
 
 from flask import Flask, request, jsonify, render_template, session, redirect, url_for, escape, flash
-from functools import wraps
-import jwt
-import requests
+from datetime import timedelta
 import pymongo
 import json
 
 app = Flask(__name__)
+
+# dead code
 with open("jwt.json") as Json:
     app.secret_key = json.loads(Json.read())["secret"]
+
 
 with open("mongoDB.json") as Json:
     user_doc = json.loads(Json.read())
@@ -27,6 +28,10 @@ db = pymongo.database.Database(client, 'zoin')
 users = pymongo.collection.Collection(db,'Users')
 Books = pymongo.collection.Collection(db, 'Books')
 
+@app.before_request
+def make_session_permanent():
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta(minutes=1)
 
 @app.route('/signup',methods=['GET','POST'])
 def signup():
@@ -58,6 +63,7 @@ def login():
         if users.find_one(request.form.to_dict(flat='true')) is not None:
             session['userEmail'] = request.form['userEmail']
             return render_template('welcome.html', info=session['userEmail'])
+
         flash('Wrong ID or PW, You have to check your ID or PW.')
         return redirect(url_for('login'))
 
