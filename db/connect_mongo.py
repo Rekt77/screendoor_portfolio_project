@@ -4,11 +4,11 @@ import json
 class ConnectDB():
 
 	def __init__(self):
-		with open("mongoDB.json") as Json:
-    		user_doc = json.loads(Json.read())
-		mongoURL = str("mongodb://%s:%s%s"%(user_doc['MongoID'],user_doc['MongoPassword'],user_doc["MongoURL"]))
-		client = pymongo.MongoClient(mongoURL)
-		db = pymongo.database.Database(client, 'zoin')
+		with open("./db/mongoDB.json") as Json:
+			user_doc = json.loads(Json.read())
+		self.mongoURL = str("mongodb://%s:%s%s"%(user_doc['MongoID'],user_doc['MongoPassword'],user_doc["MongoURL"]))
+		self.client = pymongo.MongoClient(self.mongoURL)
+		self.db = pymongo.database.Database(self.client, 'zoin')
 
 	def close(self):
 		try:

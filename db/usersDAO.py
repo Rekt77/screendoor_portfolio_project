@@ -4,7 +4,7 @@ import pymongo
 class Users():
 	
 	def __init__(self,db):
-		users = pymongo.collection.Collection(db,'Users')
+		self.users = pymongo.collection.Collection(db,'Users')
 
 	def userValidation(self,userDict):
 		if self.users.find_one(userDict) is not None:

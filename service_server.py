@@ -83,7 +83,7 @@ def register():
         return redirect(url_for('login'))
     
 @app.route('/books',methods=['GET', 'POST'])
-def books():
+def Books():
     if request.method == 'GET':
         if 'userEmail' in session:
             all_book = books.getAllbooks()

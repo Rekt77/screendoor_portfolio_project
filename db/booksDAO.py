@@ -4,7 +4,7 @@ import pymongo
 class Books():
 	
 	def __init__(self,db):
-		books = pymongo.collection.Collection(db,'Books')
+		self.books = pymongo.collection.Collection(db,'Books')
 
 	def bookCreate(self,bookDict):
 		try:
@@ -17,7 +17,7 @@ class Books():
 		try:
 			self.users.delete_one(bookDict)
 			return True
-		else:
+		except:
 			return False
 
 	def getAllbooks(self):
