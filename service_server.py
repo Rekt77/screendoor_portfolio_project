@@ -12,7 +12,6 @@ import json
 
 app = Flask(__name__)
 
-# dead code
 with open("jwt.json") as Json:
     app.secret_key = json.loads(Json.read())["secret"]
 
