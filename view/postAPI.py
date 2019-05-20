@@ -23,7 +23,7 @@ def post():
 	if request.method == "POST":
 		if "userEmail" in session:
 			now = time.strftime("%Y-%m-%d %H:%M")
-			posts.postCreate(dict_merge({"postAuthor":session["userEmail"],"postDate":now},request.form.to_dict(flat=true)))
+			posts.postCreate(dict_merge({"postAuthor":session["userEmail"],"postDate":now},request.form.to_dict(flat=True)))
 			all_posts = posts.getAllposts()
 			return render_template("post.html", posts=all_posts)
 		else:
