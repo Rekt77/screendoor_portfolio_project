@@ -8,12 +8,15 @@ Created on Mon Apr  8 20:18:20 2019
 from flask import Flask, session
 from view.bookAPI import bookAPI
 from view.userAPI import userAPI
+from view.postAPI import postAPI
 from datetime import timedelta
 import json
 
 app = Flask(__name__)
 app.register_blueprint(bookAPI)
 app.register_blueprint(userAPI)
+app.register_blueprint(postAPI)
+
 with open("jwt.json") as Json:
     app.secret_key = json.loads(Json.read())["secret"]
 

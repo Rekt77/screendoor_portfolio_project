@@ -17,5 +17,11 @@ def post():
 			redirect(url_for('userAPI.login'))
 
 	if request.method == "POST":
-		if
+		if "userEmail" in session:
+			posts.postCreate(request.form.to_dict(flat=true))
+			all_posts = posts.getAllposts()
+			return render_template("post.html", posts=all_posts)
+		else:
+			flash('You have to logged in')
+			redirect(url_for('userAPI.login'))
 
