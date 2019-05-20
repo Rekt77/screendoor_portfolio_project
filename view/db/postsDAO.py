@@ -22,7 +22,7 @@ class Posts():
 
 	def getAllbooks(self):
 		try:
-			result = self.books.find({})
+			result = self.posts.find({})
 			return result
 		except:
 			return False
