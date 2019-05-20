@@ -13,14 +13,14 @@ class Posts():
 		except:
 			return False
 
-	def bookDelete(self,postDict):
+	def postDelete(self,postDict):
 		try:
 			self.posts.delete_one(postsDict)
 			return True
 		except:
 			return False
 
-	def getAllbooks(self):
+	def getAllposts(self):
 		try:
 			result = self.posts.find({})
 			return result
