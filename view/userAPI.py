@@ -24,7 +24,7 @@ def signup():
                 return render_template('welcome.html', info=session['userEmail'])
             else:
                 flash('Email is already Exists, try again with other Email.')
-                return redirect(url_for('signup'))
+                return redirect(url_for('userAPI.signup'))
 
 @userAPI.route('/')
 @userAPI.route('/login',methods=['GET','POST'])
@@ -44,13 +44,13 @@ def login():
                 return render_template('welcome.html', info=session['userEmail'])
             else:
                 flash('Wrong ID or PW, You have to check your ID or PW.')
-                return redirect(url_for('login'))
+                return redirect(url_for('userAPI.login'))
 
 @userAPI.route('/logout')
 def logout():
     if 'userEmail' in session:
         session.pop('userEmail')
-        return redirect(url_for('login'))
+        return redirect(url_for('userAPI.login'))
     else:
         flash('You have to logged in')
-        return redirect(url_for('login'))
+        return redirect(url_for('userAPI.login'))

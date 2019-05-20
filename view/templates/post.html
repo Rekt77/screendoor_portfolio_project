@@ -1,0 +1,23 @@
+{% extends "base.html"%}
+{% block postsection %}
+<main role="main" class="container">
+	<div class="row">
+		<div class="col-md-8">
+		{% with posts=posts %}
+			{% include "tweet.html" %}
+		{% endwith %}
+		</div>
+		<div class="col-md-4">
+			<h3>side bar</h3>
+			<p class="text-muted"> you can put information here.
+				<ul>
+					<li>Latest post</li>
+					<li>Anouncement</li>
+					<li>Calendars</li>
+					<li>etc</li>
+				</ul>
+			</p>
+		</div>
+	</div>
+</main>
+{% endblock postsection %}

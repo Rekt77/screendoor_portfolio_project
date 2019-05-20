@@ -22,7 +22,7 @@ def Books():
             return render_template('books.html', books=all_book)
         else:
             flash('You have to logged in')
-            return redirect(url_for('login'))
+            return redirect(url_for('userAPI.login'))
     
     elif request.method == 'POST':
         if 'userEmail' in session:
@@ -31,4 +31,4 @@ def Books():
             return render_template('books.html', books=all_book)
         else:
             flash('You have to logged in')
-            return redirect(url_for('login'))
+            return redirect(url_for('userAPI.login'))

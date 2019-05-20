@@ -1,19 +1,19 @@
-<html>
-<head>
 {% extends "base.html"%}
 {% block content %}
-<div class="row">
-{% for items in books %}
-<div class="col-sm-4" style="margin-bottom:50px;">
-	<div class="card text-center" style="width: 18rem;">
-	  <img style="max-width:60%;max-height:60%"src="static/img/book{{loop.index%3}}.svg" class="card-img-top mx-auto" alt="book">
-	  <div class="card-body">
-	    <h5 class="card-title">{{items.get('bookName')}}</h5>
-	    <h6 class="card-subtitle mb-2 text-muted">{{items.get('bookAuthor')}} 지음, {{items.get('bookPublisher')}}</h6>
-	    <h6 class="card-subtitle mb-2 text-muted">{{items.get('bookPrice')}}원</h6>
-	  </div>
+<div class="container" >
+	<div class="row">
+	{% for items in books %}
+	<div class="col-sm-4" style="margin-bottom:50px;">
+		<div class="card text-center" style="width: 18rem;">
+		  <img style="max-width:60%;max-height:60%"src="static/img/book{{loop.index%3}}.svg" class="card-img-top mx-auto" alt="book">
+		  <div class="card-body">
+		    <h5 class="card-title">{{items.get('bookName')}}</h5>
+		    <h6 class="card-subtitle mb-2 text-muted">{{items.get('bookAuthor')}} 지음, {{items.get('bookPublisher')}}</h6>
+		    <h6 class="card-subtitle mb-2 text-muted">{{items.get('bookPrice')}}원</h6>
+		  </div>
+		</div>
 	</div>
-</div>
-{% endfor %}
+	{% endfor %}
+	</div>
 </div>
 {% endblock content %}
