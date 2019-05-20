@@ -1,1 +1,7 @@
-{% extends "post.html" %}
+{% for tweet in posts %}
+<div class="jumbotron">
+	<h3 class="display-4">tweet.title</h3>
+	<hr class="my-4"/>
+	<p>tweet.content</p>
+</div>
+{% endfor %}
