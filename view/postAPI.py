@@ -18,7 +18,7 @@ def post():
 			return render_template("post.html", posts=all_posts)
 		else:
 			flash('You have to logged in')
-			redirect(url_for('userAPI.login'))
+			return redirect(url_for('userAPI.login'))
 
 	if request.method == "POST":
 		if "userEmail" in session:
@@ -28,5 +28,5 @@ def post():
 			return render_template("post.html", posts=all_posts)
 		else:
 			flash('You have to logged in')
-			redirect(url_for('userAPI.login'))
+			return redirect(url_for('userAPI.login'))
 
