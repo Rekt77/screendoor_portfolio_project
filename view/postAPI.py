@@ -2,7 +2,7 @@ from flask import Blueprint, flash, session, render_template, jsonify, request, 
 from .db import connect_mongo, postsDAO
 
 db_connection = connect_mongo.ConnectDB().db
-posts = postsDAO.posts(db_connection)
+posts = postsDAO.Posts(db_connection)
 
 postAPI = Blueprint('postAPI', __name__, template_folder='templates')
 
