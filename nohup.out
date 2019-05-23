@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "service_server.py", line 9, in <module>
+    from view.bookAPI import bookAPI
+  File "/home/ubuntu/zoin/view/bookAPI.py", line 4, in <module>
+    db_connection = connect_mongo.ConnectDB().db
+  File "/home/ubuntu/zoin/view/db/connect_mongo.py", line 10, in __init__
+    self.client = pymongo.MongoClient(self.mongoURL)
+  File "/home/ubuntu/anaconda3/envs/zoin/lib/python3.5/site-packages/pymongo/mongo_client.py", line 494, in __init__
+    res = uri_parser.parse_uri(entity, port, warn=True)
+  File "/home/ubuntu/anaconda3/envs/zoin/lib/python3.5/site-packages/pymongo/uri_parser.py", line 351, in parse_uri
+    raise ConfigurationError('The "dnspython" module must be '
+pymongo.errors.ConfigurationError: The "dnspython" module must be installed to use mongodb+srv:// URIs
