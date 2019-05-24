@@ -15,7 +15,7 @@ def post():
 	if request.method == "GET":
 		if "userEmail" in session:
 			all_posts = posts.getAllposts()
-			return render_template("post.html",info=session["userEmail"] posts=all_posts)
+			return render_template("post.html",info=session["userEmail"], posts=all_posts)
 		else:
 			flash('You have to logged in')
 			return redirect(url_for('userAPI.login'))
