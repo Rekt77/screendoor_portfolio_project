@@ -30,11 +30,19 @@ def post():
 			flash('You have to logged in')
 			return redirect(url_for('userAPI.login'))
 
+@postAPI.route("/post/update", methods=["POST"])
+def postUpdate():
+	if "userEmail" in session:
+		posts.postUpdate(request.form.to_dict(flat=True))
+		all_posts = posts.getAllposts()
+		return render_template("post.html",info=session["userEmail"], posts=all_posts)
+	else:
+		flash('You have to logged in')
+		return redirect(url_for('userAPI.login'))
 
 @postAPI.route("/post/remove", methods=["POST"])
 def postRemove():
 	if "userEmail" in session:
-		print(request.form.to_dict(flat=True)["obj_id"])
 		posts.postDelete(request.form.to_dict(flat=True)["obj_id"])
 		all_posts = posts.getAllposts()
 		return render_template("post.html",info=session["userEmail"], posts=all_posts)

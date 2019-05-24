@@ -21,6 +21,16 @@ class Posts():
 		except:
 			return False
 
+	def postUdate(self,postDict):
+		try:
+			self.posts.udb.counters.find_one_and_update(
+				query={"_id": ObjcetId(postDict["obj_id"])},
+				update={"$set":{"postTitle":postDict["postTitle"],"postContent":postDict["postContent"]}}
+				)
+			return True
+		except:
+			return False
+
 	def getAllposts(self):
 		try:
 			result = self.posts.find({})
