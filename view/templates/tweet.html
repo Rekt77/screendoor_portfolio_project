@@ -6,7 +6,9 @@
 			<footer class="blockquote-footer">{{tweet.postDate}}<cite title="Source Title">-{{tweet.postAuthor}}</cite></footer>
 		</blockquote>
 		<p class="card-text">{{tweet.postContent}}</p>
-		<a href="#" class="btn btn-primary float-right">확인하기</a>
+		{% if info == tweet.postAuthor %}
+		{% include "spanpopover.html" %}
+		{% endif %}
 	</div>
 </div>
 {% endfor %}
