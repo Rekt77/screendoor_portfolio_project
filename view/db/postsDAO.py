@@ -8,12 +8,12 @@ class Posts():
 
 	def postCreate(self,postDict):
 		try:
-			self.posts.insert_one(postDict)
-			return True
+			obj_id = self.posts.insert_one(postDict).inserted_id
+			return obj_id
 		except:
 			return False
 
-	def postDelete(self,postDict):
+	def postDelete(self,obj_id):
 		try:
 			self.posts.delete_one(postsDict)
 			return True
