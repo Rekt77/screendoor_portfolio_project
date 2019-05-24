@@ -33,7 +33,7 @@ def post():
 @postAPI.route("/post/update", methods=["POST"])
 def postUpdate():
 	if "userEmail" in session:
-		print(request.form.to_dict(flat=True).obj_id)
+		print(request.form.to_dict(flat=True)["obj_id"])
 		posts.postUpdate(request.form.to_dict(flat=True))
 		return redirect(url_for('postAPI.post'))
 	else:
