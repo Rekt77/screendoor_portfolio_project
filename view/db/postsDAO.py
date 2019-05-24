@@ -25,7 +25,8 @@ class Posts():
 		try:
 			self.posts.udb.counters.find_one_and_update(
 				query={"_id": ObjcetId(postDict["obj_id"])},
-				update={"$set":{"postTitle":postDict["postTitle"],"postContent":postDict["postContent"]}}
+				update={"$set":{"postTitle":postDict["postTitle"],"postContent":postDict["postContent"]}},
+				upsert=False
 				)
 			return True
 		except:
