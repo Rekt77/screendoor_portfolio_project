@@ -7,7 +7,8 @@
 		</blockquote>
 		<p class="card-text">{{tweet.postContent}}</p>
 		{% if info == tweet.postAuthor %}
-		{% include "spanpopover.html" %}
+		{% include "modifymodal.html" %}
+		{% include "removemodal.html" %}
 		{% endif %}
 	</div>
 </div>
