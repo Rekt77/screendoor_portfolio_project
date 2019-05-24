@@ -22,15 +22,15 @@ class Posts():
 			return False
 
 	def postUpdate(self,postDict):
-		try:
-			self.posts.find_and_modify(
-				{"_id": ObjcetId(postDict["obj_id"])},
-				{"$set":{"postTitle":postDict["postTitle"],"postContent":postDict["postContent"]}},
-				upsert=False
-				)
-			return True
-		except:
-			return False
+		#try:
+		self.posts.find_and_modify(
+			{"_id": ObjectId(postDict["obj_id"])},
+			{"$set":{"postTitle":postDict["postTitle"],"postContent":postDict["postContent"]}},
+			upsert=False
+			)
+		return True
+		#except:
+		#	return False
 
 	def getAllposts(self):
 		try:
