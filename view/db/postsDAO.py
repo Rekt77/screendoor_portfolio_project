@@ -1,4 +1,5 @@
 import pymongo
+from bson.objectid import ObjectId
 
 """MongoDB Database Access Object"""
 class Posts():
@@ -15,10 +16,21 @@ class Posts():
 
 	def postDelete(self,obj_id):
 		try:
-			self.posts.delete_one(postsDict)
+			self.posts.delete_one({"_id":ObjectId(obj_id)})
 			return True
 		except:
 			return False
+
+	def postUpdate(self,postDict):
+		#try:
+		self.posts.find_and_modify(
+			{"_id": ObjectId(postDict["obj_id"])},
+			{"$set":{"postTitle":postDict["postTitle"],"postContent":postDict["postContent"]}},
+			upsert=False
+			)
+		return True
+		#except:
+		#	return False
 
 	def getAllposts(self):
 		try:
