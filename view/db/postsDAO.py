@@ -23,7 +23,7 @@ class Posts():
 
 	def postUpdate(self,postDict):
 		try:
-			self.posts.udb.counters.find_and_modify(
+			self.posts.find_and_modify(
 				{"_id": ObjcetId(postDict["obj_id"])},
 				{"$set":{"postTitle":postDict["postTitle"],"postContent":postDict["postContent"]}},
 				upsert=False
