@@ -25,7 +25,7 @@ def post():
 			now = time.strftime("%Y-%m-%d %H:%M")
 			obj_id = posts.postCreate(dict_merge({"postAuthor":session["userEmail"],"postDate":now},request.form.to_dict(flat=True)))
 			all_posts = posts.getAllposts()
-			return render_template("post.html",info=session["userEmail"], posts=all_posts)
+			return redirect(url_for('postAPI.post'))
 		else:
 			flash('You have to logged in')
 			return redirect(url_for('userAPI.login'))
@@ -34,8 +34,7 @@ def post():
 def postUpdate():
 	if "userEmail" in session:
 		posts.postUpdate(request.form.to_dict(flat=True))
-		all_posts = posts.getAllposts()
-		return render_template("post.html",info=session["userEmail"], posts=all_posts)
+		return redirect(url_for('postAPI.post'))
 	else:
 		flash('You have to logged in')
 		return redirect(url_for('userAPI.login'))
@@ -44,8 +43,7 @@ def postUpdate():
 def postRemove():
 	if "userEmail" in session:
 		posts.postDelete(request.form.to_dict(flat=True)["obj_id"])
-		all_posts = posts.getAllposts()
-		return render_template("post.html",info=session["userEmail"], posts=all_posts)
+		return redirect(url_for('postAPI.post'))
 	else:
 		flash('You have to logged in')
 		return redirect(url_for('userAPI.login'))

@@ -7,7 +7,7 @@
 		</blockquote>
 		<p class="card-text">{{tweet.postContent}}</p>
 		{% if info == tweet.postAuthor %}
-		{% include "removemodal.html" %}&nbsp;{% include "modifymodal.html" %}
+		{% include "removemodal.html" %}{% include "modifymodal.html" %}
 		{% endif %}
 	</div>
 </div>
