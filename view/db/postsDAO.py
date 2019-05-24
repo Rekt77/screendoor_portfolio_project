@@ -1,4 +1,5 @@
 import pymongo
+from bson.objectid import ObjectId
 
 """MongoDB Database Access Object"""
 class Posts():
@@ -15,7 +16,7 @@ class Posts():
 
 	def postDelete(self,obj_id):
 		try:
-			self.posts.delete_one({"_id":obj_id})
+			self.posts.delete_one({"_id":ObjectId(obj_id)})
 			return True
 		except:
 			return False
