@@ -15,7 +15,7 @@ class Posts():
 
 	def postDelete(self,obj_id):
 		try:
-			self.posts.delete_one(postsDict)
+			self.posts.delete_one({"_id":obj_id})
 			return True
 		except:
 			return False
